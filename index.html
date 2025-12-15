@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ŠALIN RANKAS NUO LAISVO ŽODŽIO</title>
+    <style>
+        /* --- BAZINIAI NUSTATYMAI --- */
+        :root {
+            --primary-color: #D32F2F; /* Agresyvi raudona */
+            --black: #000000;
+            --white: #ffffff;
+            --grey: #f4f4f4;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace; /* Šriftas primenantis spausdinimo mašinėlę/dokumentus */
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--grey);
+        }
+
+        h1, h2, h3 {
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 15px 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 2px solid var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        .btn:hover { 
+            background: transparent; 
+            color: var(--primary-color);
+        }
+
+        /* --- VISUAL FX: CENZŪRA --- */
+        .highlight {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 2px 5px;
+        }
+        
+        /* Simbolinis "užbrauktas" tekstas fone */
+        .censored-bg {
+            background-image: repeating-linear-gradient(45deg, #ccc 0, #ccc 1px, transparent 0, transparent 50%);
+            background-size: 10px 10px;
+        }
+
+        /* --- HERO SEKCIJA --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://placehold.co/1920x1080/000/FFF?text=U%C5%BEklijuota+Burna'); 
+            /* Pakeiskite URL į nuotrauką su užklijuota burna ar megafonu */
+            background-size: cover;
+            background-position: center;
+            height: 95vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin: 0 0 20px 0;
+            border: 5px solid var(--primary-color);
+            padding: 20px;
+            display: inline-block;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: lighter;
+        }
+
+        /* --- SEKCIJOS --- */
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 4rem 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-decoration: underline;
+            text-decoration-color: var(--primary-color);
+            text-underline-offset: 10px;
+        }
+
+        /* --- REIKALAVIMAI --- */
+        .demands-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            border: 2px solid var(--black);
+        }
+
+        .demand-item {
+            padding: 30px;
+            border-bottom: 1px solid var(--black);
+            background: var(--white);
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .demand-item:last-child { border-bottom: none; }
+
+        .demand-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-right: 20px;
+            line-height: 1;
+        }
+
+        /* --- INFO BOX --- */
+        .info-box {
+            background: var(--black);
+            color: var(--white);
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media(max-width: 768px) {
+            .hero h1 { font-size: 2rem; border-width: 3px; }
+            .demand-item { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div>
+            <h1>ŠALIN RANKAS<br><span style="color:var(--primary-color)">NUO LAISVO ŽODŽIO</span></h1>
+            <p>Tiesa nemiršta tyloje. Ji miršta, kai mes bijome kalbėti.</p>
+            <a href="#veiksmas" class="btn">Ginti Konstituciją</a>
+        </div>
+    </header>
+
+    <section class="container">
+        <h2 class="section-title">MES NEBŪSIME NUTILDYTI</h2>
+        <p style="font-size: 1.3rem; text-align: justify;">
+            Žodžio laisvė nėra privilegija – tai <span class="highlight">pamatinė žmogaus teisė</span>. 
+            Šiandien matome bandymus cenzūruoti nepatogias nuomones, klijuoti etiketes ir persekiojimu nutildyti kritiką. 
+            Kai vienintelė "teisinga" nuomonė nuleidžiama iš viršaus, demokratija tampa dekoracija.
+            <br><br>
+            <strong>Mes sakome GANA.</strong> Mes atsisakome bijoti reikšti savo mintis.
+        </p>
+    </section>
+
+    <section style="background-color: #e0e0e0; padding: 50px 0;">
+        <div class="container">
+            <h2 class="section-title">MŪSŲ REIKALAVIMAI</h2>
+            <div class="demands-grid">
+                <div class="demand-item">
+                    <span class="demand-number">01</span>
+                    <div>
+                        <h3>JOKIOS POLITINĖS CENZŪROS</h3>
+                        <p>Reikalaujame stabdyti bet kokias įstatymines iniciatyvas, kurios po "neapykantos kalbos" priedanga siekia kriminalizuoti kritiką valdžiai ar skirtingą nuomonę.</p>
+                    </div>
+                </div>
+                <div class="demand-item">
+                    <span class="demand-number">02</span>
+                    <div>
+                        <h3>MEDIA NEŠALIŠKUMAS</h3>
+                        <p>LRT ir kitos žiniasklaidos priemonės turi užtikrinti įvairių nuomonių atstovavimą, o ne tarnauti vienos politinės jėgos naratyvui.</p>
+                    </div>
+                </div>
+                <div class="demand-item">
+                    <span class="demand-number">03</span>
+                    <div>
+                        <h3>TEISĖ Į DISKUSIJĄ</h3>
+                        <p>Reikalaujame viešų debatų aktualiais klausimais, o ne oponentų blokavimo ir "cancel" kultūros skatinimo valstybiniu lygmeniu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="veiksmas" class="info-box">
+        <h2 style="color: var(--primary-color);">LAISVĖS GYNĖJŲ MITINGAS</h2>
+        <div style="font-size: 1.2rem; margin-top: 20px;">
+            <p>📅 DATA: <strong>[ĮRAŠYTI DATĄ]</strong></p>
+            <p>⏰ LAIKAS: <strong>[ĮRAŠYTI LAIKĄ]</strong></p>
+            <p>📍 VIETA: <strong>Katedros Aikštė / Seimas, Vilnius</strong></p>
+        </div>
+        <br>
+        <p style="font-size: 0.9rem; opacity: 0.7;">Leidimas renginiui suderintas.</p>
+        <br>
+        <a href="#" class="btn" style="border-color: white;">Aš Dalyvausiu</a>
+    </section>
+
+    <section class="container" style="text-align: center;">
+        <h2>NETYLĖK. SKLEISK ŽINIĄ.</h2>
+        <p>Atsisiųsk plakatus ir dalinkis socialiniuose tinkluose.</p>
+        <div style="margin-top: 30px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+            <button class="btn" style="background: #333; border-color: #333;">Plakatas A4 (PDF)</button>
+            <button class="btn" style="background: #333; border-color: #333;">Facebook Viršelis</button>
+        </div>
+    </section>
+
+    <footer style="background: black; color: white; padding: 20px; text-align: center; border-top: 5px solid var(--primary-color);">
+        <p>&copy; 2025 Iniciatyva už Žodžio Laisvę.</p>
+        <p>33-iasis Konstitucijos straipsnis.</p>
+    </footer>
+
+</body>
+</html>
