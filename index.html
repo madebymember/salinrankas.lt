@@ -14,7 +14,7 @@
         }
 
         body {
-            font-family: 'Courier New', Courier, monospace; /* Šriftas primenantis spausdinimo mašinėlę/dokumentus */
+            font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
             line-height: 1.6;
@@ -48,23 +48,16 @@
             color: var(--primary-color);
         }
 
-        /* --- VISUAL FX: CENZŪRA --- */
+        /* --- VISUAL FX --- */
         .highlight {
             background-color: var(--black);
             color: var(--white);
             padding: 2px 5px;
         }
-        
-        /* Simbolinis "užbrauktas" tekstas fone */
-        .censored-bg {
-            background-image: repeating-linear-gradient(45deg, #ccc 0, #ccc 1px, transparent 0, transparent 50%);
-            background-size: 10px 10px;
-        }
 
         /* --- HERO SEKCIJA --- */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://placehold.co/1920x1080/000/FFF?text=U%C5%BEklijuota+Burna'); 
-            /* Pakeiskite URL į nuotrauką su užklijuota burna ar megafonu */
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('salin_rankas.jpg'); 
             background-size: cover;
             background-position: center;
             height: 95vh;
@@ -200,14 +193,13 @@
     <section id="veiksmas" class="info-box">
         <h2 style="color: var(--primary-color);">LAISVĖS GYNĖJŲ MITINGAS</h2>
         <div style="font-size: 1.2rem; margin-top: 20px;">
-            <p>📅 DATA: <strong>[ĮRAŠYTI DATĄ]</strong></p>
-            <p>⏰ LAIKAS: <strong>[ĮRAŠYTI LAIKĄ]</strong></p>
+            <p>📅 DATA: <strong>Sekite naujienas FB renginyje</strong></p>
             <p>📍 VIETA: <strong>Katedros Aikštė / Seimas, Vilnius</strong></p>
         </div>
         <br>
         <p style="font-size: 0.9rem; opacity: 0.7;">Leidimas renginiui suderintas.</p>
         <br>
-        <a href="#" class="btn" style="border-color: white;">Aš Dalyvausiu</a>
+        <a href="https://www.facebook.com/events/1183241723986819/" target="_blank" class="btn" style="border-color: white;">Aš Dalyvausiu</a>
     </section>
 
     <section class="container" style="text-align: center;">
