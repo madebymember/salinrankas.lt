@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ŠALIN RANKAS NUO LAISVO ŽODŽIO</title>
+    <title>ŠALIN RANKAS - Budėjimo Režimas</title>
     <style>
         /* --- BAZINIAI NUSTATYMAI --- */
         :root {
-            --primary-color: #D32F2F; /* Agresyvi raudona */
+            --primary-color: #D32F2F;
             --black: #000000;
             --white: #ffffff;
             --grey: #f4f4f4;
+            --warning: #fbc02d;
         }
 
         body {
@@ -49,20 +50,19 @@
             color: var(--primary-color);
         }
 
-        /* --- VISUAL FX --- */
         .highlight {
             background-color: var(--black);
             color: var(--white);
             padding: 2px 5px;
         }
 
-        /* --- HERO SEKCIJA --- */
+        /* --- HERO SEKCIJA (ATNAUJINTA) --- */
         .hero {
-            /* PAKEISTA: Dabar naudoja jūsų failą 'salin_rankas.jpg' */
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('salin_rankas.jpg'); 
+            /* Fonas vis dar tamsus, bet tekstas pakeistas į pergalę/budėjimą */
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('salin_rankas.jpg'); 
             background-size: cover;
             background-position: center;
-            height: 95vh;
+            height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -72,139 +72,86 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin: 0 0 20px 0;
-            border: 5px solid var(--primary-color);
+            border: 5px solid var(--white);
             padding: 20px;
             display: inline-block;
         }
 
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            font-weight: lighter;
+        .status-badge {
+            background-color: var(--warning);
+            color: var(--black);
+            padding: 5px 15px;
+            font-weight: bold;
+            font-family: Helvetica, Arial, sans-serif;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 15px;
         }
 
-        /* --- SEKCIJOS --- */
+        /* --- NAUJIENŲ SEKCIJA --- */
         .container {
             max-width: 900px;
             margin: auto;
             padding: 4rem 20px;
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-decoration: underline;
-            text-decoration-color: var(--primary-color);
-            text-underline-offset: 10px;
-        }
-
-        /* --- REIKALAVIMAI --- */
-        .demands-grid {
+        .news-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 0;
-            border: 2px solid var(--black);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
-        .demand-item {
-            padding: 30px;
-            border-bottom: 1px solid var(--black);
+        .news-card {
             background: var(--white);
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .demand-item:last-child { border-bottom: none; }
-
-        .demand-number {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-right: 20px;
-            line-height: 1;
-        }
-
-        /* --- PROGRAMA --- */
-        .program-section {
-            background: var(--black);
-            color: var(--white);
-            padding: 60px 20px;
-        }
-
-        .day-card {
-            border: 1px solid #444;
-            padding: 25px;
-            margin-bottom: 20px;
-            background: #111;
-            text-align: left;
-        }
-
-        .day-card.major {
-            border: 3px solid var(--primary-color);
-            background: #1a0505; 
+            border: 1px solid #ccc;
+            padding: 20px;
             position: relative;
         }
         
-        .day-card.major::after {
-            content: "SVARBIAUSIA DIENA";
-            position: absolute;
-            top: -15px;
-            right: 20px;
-            background: var(--primary-color);
-            color: white;
-            padding: 5px 10px;
+        .news-date {
             font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .day-title {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
-        }
-
-        .day-subtitle {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
+            color: #666;
+            margin-bottom: 10px;
             display: block;
         }
 
-        .schedule-row {
-            display: flex;
-            margin-bottom: 15px;
-            border-bottom: 1px dotted #333;
-            padding-bottom: 10px;
-        }
-        
-        .schedule-time {
-            min-width: 110px;
-            font-weight: bold;
-            color: #ddd;
+        /* --- TIMELINE / ISTORIJA --- */
+        .timeline-box {
+            background: var(--black);
+            color: var(--white);
+            padding: 50px 20px;
         }
 
-        .urgent-text {
-            color: var(--white);
-            font-weight: bold;
-            margin-top: 15px;
-            padding: 10px;
-            border: 1px dashed var(--primary-color);
+        .timeline-item {
+            border-left: 2px solid var(--primary-color);
+            padding-left: 20px;
+            margin-bottom: 30px;
+            margin-left: 20px;
+        }
+
+        /* --- PRENUMERATA --- */
+        .subscribe-box {
+            background: var(--primary-color);
+            color: white;
+            padding: 40px;
             text-align: center;
+            margin-top: 40px;
+        }
+
+        input[type="email"] {
+            padding: 10px;
+            width: 60%;
+            max-width: 300px;
+            border: none;
+            margin-right: 10px;
         }
 
         /* --- RESPONSIVE --- */
         @media(max-width: 768px) {
             .hero h1 { font-size: 2rem; border-width: 3px; }
-            .demand-item { flex-direction: column; }
-            .schedule-row { flex-direction: column; }
-            .schedule-time { margin-bottom: 5px; color: var(--primary-color); }
+            input[type="email"] { width: 100%; margin-bottom: 10px; }
         }
     </style>
 </head>
@@ -212,110 +159,79 @@
 
     <header class="hero">
         <div>
-            <h1>ŠALIN RANKAS<br><span style="color:var(--primary-color)">NUO LAISVO ŽODŽIO</span></h1>
-            <p>Tiesa nemiršta tyloje. Ji miršta, kai mes bijome kalbėti.</p>
-            <a href="#programa" class="btn">Protesto Programa</a>
+            <div class="status-badge">STATUSAS: BUDĖJIMO REŽIMAS</div>
+            <h1>MES SUSTABDĖME<br><span style="color:var(--primary-color)">SKUBOS TVARKĄ</span></h1>
+            <p>Tačiau karas dar nelaimėtas. Politinis spaudimas tęsiasi.</p>
+            <a href="#naujienos" class="btn" style="background:white; color:black; border-color:white;">Skaityti Situaciją</a>
         </div>
     </header>
 
-    <section class="container">
-        <h2 class="section-title">MES NEBŪSIME NUTILDYTI</h2>
-        <p style="font-size: 1.3rem; text-align: justify;">
-            Žodžio laisvė nėra privilegija – tai <span class="highlight">pamatinė žmogaus teisė</span>. 
-            Šiandien matome bandymus cenzūruoti nepatogias nuomones, klijuoti etiketes ir persekiojimu nutildyti kritiką. 
-            <br><br>
-            <strong>Mes sakome GANA.</strong>
-        </p>
-    </section>
+    <section class="container" id="naujienos">
+        <h2 style="text-align: center; margin-bottom: 40px;">2026 M. SAUSIO MĖN. SITUACIJA</h2>
+        
+        <div class="news-grid">
+            <article class="news-card">
+                <span class="news-date">2026-01-02</span>
+                <h3>NAUJA GRĖSMĖ: „DARBO GRUPĖ“</h3>
+                <p>Nors įstatymo priėmimas sustabdytas, Seime suformuota darbo grupė LRT įstatymui tobulinti. Žurnalistų bendruomenė ir opozicija tai vadina „dūmų uždanga“ ir atsisako joje dalyvauti, kol nebus atšaukti ydingi siūlymai.</p>
+            </article>
 
-    <section style="background-color: #e0e0e0; padding: 50px 0;">
-        <div class="container">
-            <h2 class="section-title">MŪSŲ REIKALAVIMAI</h2>
-            <div class="demands-grid">
-                <div class="demand-item">
-                    <span class="demand-number">01</span>
-                    <div>
-                        <h3>JOKIOS POLITINĖS CENZŪROS</h3>
-                        <p>Reikalaujame stabdyti iniciatyvas, kurios siekia kriminalizuoti kritiką valdžiai.</p>
-                    </div>
-                </div>
-                <div class="demand-item">
-                    <span class="demand-number">02</span>
-                    <div>
-                        <h3>MEDIA NEŠALIŠKUMAS</h3>
-                        <p>LRT privalo užtikrinti nuomonių įvairovę, o ne tarnauti vienai politinei jėgai.</p>
-                    </div>
-                </div>
-            </div>
+            <article class="news-card">
+                <span class="news-date">2025-12-29</span>
+                <h3>POLITINIS KERŠTAS?</h3>
+                <p>Seimo narė B. Vėsaitė ir kiti valdantieji kreipėsi į institucijas, reikalaudami ištirti „Šalin rankas“ protesto kaštus. Tai vertiname kaip bandymą įbauginti ir nutildyti laisvą žodį.</p>
+            </article>
+
+            <article class="news-card" style="border-left: 5px solid var(--primary-color);">
+                <span class="news-date">SVARBU</span>
+                <h3>KODĖL MES BUDIME?</h3>
+                <p>Pataisos nėra atmestos – jos tik „įstrigo“ komitete. Bet kurią akimirką jos gali grįžti į darbotvarkę. Mes stebime kiekvieną Seimo žingsnį.</p>
+            </article>
         </div>
     </section>
 
-    <section id="programa" class="program-section">
-        <div class="container" style="padding-top: 0; padding-bottom: 0;">
-            <h2 class="section-title" style="color: white; text-decoration-color: white;">PROTESTO PROGRAMA</h2>
-            <p style="text-align: center; margin-bottom: 40px;">VIETA: <strong>NEPRIKLAUSOMYBĖS AIKŠTĖ, VILNIUS</strong></p>
-
-            <div class="day-card">
-                <h3 class="day-title">ANTRADIENIS, GRUODŽIO 16 D.</h3>
-                <span class="day-subtitle">LRT ĮSTATYMO SVARSTYMAS SEIME</span>
-                
-                <div class="schedule-row">
-                    <div class="schedule-time">12:00 – 18:00</div>
-                    <div>Gyvos LRT RADIJO transliacijos. Galėsite klausytis laidų, pamatyti, kaip dirba žurnalistai.</div>
-                </div>
-                <div class="schedule-row" style="border: none;">
-                    <div class="schedule-time" style="color: var(--primary-color);">18:00 – 20:00</div>
-                    <div><strong>PROTESTAS.</strong> Aikštėje degs laužai 🔥</div>
-                </div>
+    <section class="timeline-box">
+        <div class="container" style="padding: 0;">
+            <h2 style="text-align: center; color: var(--white);">KOVA UŽ LAISVĄ ŽODĮ</h2>
+            
+            <div class="timeline-item">
+                <strong style="color: var(--primary-color);">2025 m. gruodžio 18 d.</strong>
+                <p>PERGALĖ (DALINĖ). Po trijų dienų protestų ir laužų prie Seimo, valdantieji buvo priversti atsitraukti. Prezidentūra ir visuomenė tarė griežtą „NE“.</p>
             </div>
 
-            <div class="day-card major">
-                <h3 class="day-title">TREČIADIENIS, GRUODŽIO 17 D.</h3>
-                <span class="day-subtitle">LRT ĮSTATYMO PRIĖMIMO IŠVAKARĖS</span>
-                
-                <div class="schedule-row">
-                    <div class="schedule-time">09:00 – 18:00</div>
-                    <div>Gyvos LRT RADIJO transliacijos. Galimybė stebėti žurnalistų darbą.</div>
-                </div>
-                <div class="schedule-row" style="border: none;">
-                    <div class="schedule-time" style="color: var(--primary-color); font-size: 1.2rem;">18:00 – 20:00</div>
-                    <div><strong style="font-size: 1.2rem;">SVARBIAUSIAS PROTESTAS.</strong> Aikštėje degs laužai 🔥</div>
-                </div>
-
-                <div class="urgent-text">
-                    ❗ Jeigu negalite ateiti kitomis dienomis, ateikite trečiadienį vakare. Tai – pati svarbiausia diena. Čia ypač svarbus kiekvieno dalyvavimas!
-                </div>
+            <div class="timeline-item">
+                <strong style="color: var(--primary-color);">2025 m. gruodžio 16 d.</strong>
+                <p>MOBILIZACIJA. Tūkstantinė minia susirinko Nepriklausomybės aikštėje. LRT radijas transliavo gyvai iš aikštės.</p>
             </div>
 
-            <div class="day-card">
-                <h3 class="day-title">KETVIRTADIENIS, GRUODŽIO 18 D.</h3>
-                <span class="day-subtitle">LRT ĮSTATYMO PRIĖMIMAS SEIME</span>
-                
-                <div class="schedule-row">
-                    <div class="schedule-time">07:00 – 18:00</div>
-                    <div>Gyvos LRT RADIJO transliacijos.</div>
-                </div>
-                <div class="schedule-row" style="border: none;">
-                    <div class="schedule-time" style="color: var(--primary-color);">18:00 – 20:00</div>
-                    <div><strong>PROTESTAS.</strong> Aikštėje degs laužai 🔥</div>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="https://www.facebook.com/events/1183241723986819/" target="_blank" class="btn" style="border-color: white;">Prisijungti Facebook</a>
+            <div class="timeline-item">
+                <strong style="color: var(--primary-color);">2025 m. gruodžio 9 d.</strong>
+                <p>PIRMASIS SIGNALAS. Pirmasis mitingas, parodęs, kad visuomenė neleis politizuoti nacionalinio transliuotojo.</p>
             </div>
         </div>
     </section>
 
     <section class="container" style="text-align: center;">
-        <h2>SKLEISK ŽINIĄ</h2>
-        <div style="margin-top: 30px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-            <button class="btn" style="background: #333; border-color: #333;">Plakatas A4 (PDF)</button>
+        <h2>BŪK PASIRUOŠĘS</h2>
+        <p>Šiuo metu į gatves nekviečiame, bet tai gali pasikeisti per vieną naktį.</p>
+        
+        <div class="subscribe-box">
+            <h3>GAUK SKUBIUS PRANEŠIMUS SMS ŽINUTE</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 20px;">Tik ypatingos skubos atveju (pvz., jei įstatymas grįžta į salę).</p>
+            <form>
+                <input type="email" placeholder="Tavo el. paštas arba tel. nr.">
+                <button type="button" class="btn" style="border: 2px solid white; margin-top: 0;">Prenumeruoti</button>
+            </form>
+        </div>
+        
+        <div style="margin-top: 40px;">
+             <a href="https://www.facebook.com/events/1183241723986819/" target="_blank" style="text-decoration: underline; font-weight: bold;">Sekite diskusijas Facebook grupėje &rarr;</a>
         </div>
     </section>
 
     <footer style="background: black; color: white; padding: 20px; text-align: center; border-top: 5px solid var(--primary-color);">
-        <p>&copy; 2025 Iniciatyva už Žodžio Laisvę.</p>
+        <p>&copy; 2026 Iniciatyva už Žodžio Laisvę.</p>
+        <p>Mes stebime.</p>
     </footer>
 
 </body>
