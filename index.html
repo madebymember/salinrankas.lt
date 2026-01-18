@@ -7,11 +7,11 @@
     <style>
         /* --- BAZINIAI NUSTATYMAI --- */
         :root {
-            --primary-color: #D32F2F;
-            --black: #000000;
+            --primary-color: #D32F2F; /* Raudona - pavojaus */
+            --black: #050505;
             --white: #ffffff;
-            --grey: #f4f4f4;
-            --warning: #fbc02d;
+            --grey: #f0f0f0;
+            --warning: #FFC107; /* Geltona - dėmesio */
         }
 
         body {
@@ -29,7 +29,8 @@
             letter-spacing: -1px;
         }
 
-        a { text-decoration: none; color: inherit; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a:hover { opacity: 0.7; }
         
         .btn {
             display: inline-block;
@@ -40,7 +41,6 @@
             text-transform: uppercase;
             border: 2px solid var(--primary-color);
             cursor: pointer;
-            transition: all 0.3s;
             font-family: Helvetica, Arial, sans-serif;
             margin-top: 20px;
         }
@@ -50,49 +50,43 @@
             color: var(--primary-color);
         }
 
-        .highlight {
-            background-color: var(--black);
-            color: var(--white);
-            padding: 2px 5px;
-        }
-
-        /* --- HERO SEKCIJA (ATNAUJINTA) --- */
+        /* --- HERO SEKCIJA --- */
         .hero {
-            /* Fonas vis dar tamsus, bet tekstas pakeistas į pergalę/budėjimą */
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('salin_rankas.jpg'); 
+            /* Fonas tamsesnis, kad išryškėtų tekstas */
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.9)), url('salin_rankas.jpg'); 
             background-size: cover;
             background-position: center;
-            height: 80vh;
+            height: 85vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--white);
             padding: 20px;
+            border-bottom: 5px solid var(--warning);
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin: 0 0 20px 0;
-            border: 5px solid var(--white);
-            padding: 20px;
-            display: inline-block;
+            font-size: 3.5rem;
+            margin: 10px 0 20px 0;
+            line-height: 1.1;
         }
 
         .status-badge {
             background-color: var(--warning);
             color: var(--black);
-            padding: 5px 15px;
+            padding: 8px 20px;
+            font-size: 1.2rem;
             font-weight: bold;
             font-family: Helvetica, Arial, sans-serif;
             text-transform: uppercase;
             display: inline-block;
-            margin-bottom: 15px;
+            border: 2px solid var(--black);
         }
 
-        /* --- NAUJIENŲ SEKCIJA --- */
+        /* --- NAUJIENŲ TINKLELIS --- */
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: auto;
             padding: 4rem 20px;
         }
@@ -100,58 +94,76 @@
         .news-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 25px;
+            margin-top: 30px;
         }
 
         .news-card {
             background: var(--white);
             border: 1px solid #ccc;
-            padding: 20px;
-            position: relative;
+            padding: 25px;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
         }
-        
-        .news-date {
-            font-size: 0.8rem;
+
+        .news-card.alert {
+            border: 2px solid var(--primary-color);
+        }
+
+        .date-tag {
+            font-size: 0.85rem;
             color: #666;
             margin-bottom: 10px;
             display: block;
+            font-weight: bold;
         }
 
-        /* --- TIMELINE / ISTORIJA --- */
-        .timeline-box {
+        /* --- CHRONOLOGIJA (TIMELINE) --- */
+        .timeline-section {
             background: var(--black);
             color: var(--white);
-            padding: 50px 20px;
+            padding: 60px 20px;
         }
 
         .timeline-item {
             border-left: 2px solid var(--primary-color);
-            padding-left: 20px;
-            margin-bottom: 30px;
-            margin-left: 20px;
+            padding-left: 25px;
+            margin-bottom: 40px;
+            position: relative;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* --- PRENUMERATA --- */
-        .subscribe-box {
+        .timeline-item::before {
+            content: '';
+            width: 12px;
+            height: 12px;
             background: var(--primary-color);
-            color: white;
+            position: absolute;
+            left: -7px;
+            top: 5px;
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            color: var(--warning);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* --- BOTTOM CTA --- */
+        .subscribe-box {
+            background: #e0e0e0;
             padding: 40px;
             text-align: center;
-            margin-top: 40px;
-        }
-
-        input[type="email"] {
-            padding: 10px;
-            width: 60%;
-            max-width: 300px;
-            border: none;
-            margin-right: 10px;
+            border: 2px solid var(--black);
+            margin-top: 50px;
         }
 
         /* --- RESPONSIVE --- */
         @media(max-width: 768px) {
-            .hero h1 { font-size: 2rem; border-width: 3px; }
-            input[type="email"] { width: 100%; margin-bottom: 10px; }
+            .hero h1 { font-size: 2.2rem; }
+            .status-badge { font-size: 1rem; }
         }
     </style>
 </head>
@@ -159,79 +171,82 @@
 
     <header class="hero">
         <div>
-            <div class="status-badge">STATUSAS: BUDĖJIMO REŽIMAS</div>
-            <h1>MES SUSTABDĖME<br><span style="color:var(--primary-color)">SKUBOS TVARKĄ</span></h1>
-            <p>Tačiau karas dar nelaimėtas. Politinis spaudimas tęsiasi.</p>
-            <a href="#naujienos" class="btn" style="background:white; color:black; border-color:white;">Skaityti Situaciją</a>
+            <div class="status-badge">⚠️ STATUSAS: BUDĖJIMO REŽIMAS</div>
+            <h1>MES SUSTABDĖME<br><span style="color:var(--primary-color)">BULDOZERĮ</span></h1>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: auto;">
+                Protestai ir 1000+ opozicijos pataisų privertė valdžią atsitraukti. 
+                Tačiau "Darbo grupės" užkulisiuose rengiamas naujas planas.
+            </p>
+            <div style="margin-top: 30px;">
+                <a href="#naujienos" class="btn" style="background: white; color: black; border-color: white;">Skaityti Situaciją</a>
+            </div>
         </div>
     </header>
 
     <section class="container" id="naujienos">
-        <h2 style="text-align: center; margin-bottom: 40px;">2026 M. SAUSIO MĖN. SITUACIJA</h2>
+        <h2 style="text-align: center; border-bottom: 3px solid var(--black); padding-bottom: 10px; display: inline-block;">SITUACIJA ŠIANDIEN</h2>
         
         <div class="news-grid">
-            <article class="news-card">
-                <span class="news-date">2026-01-02</span>
-                <h3>NAUJA GRĖSMĖ: „DARBO GRUPĖ“</h3>
-                <p>Nors įstatymo priėmimas sustabdytas, Seime suformuota darbo grupė LRT įstatymui tobulinti. Žurnalistų bendruomenė ir opozicija tai vadina „dūmų uždanga“ ir atsisako joje dalyvauti, kol nebus atšaukti ydingi siūlymai.</p>
+            <article class="news-card alert">
+                <span class="date-tag">2026 m. sausio 14 d.</span>
+                <h3 style="color: var(--primary-color);">POLITINIS SPAUDIMAS ORGANIZATORIAMS</h3>
+                <p>Valdantieji pradėjo puolimą ne prieš argumentus, o prieš žmones. Seime keliami klausimai dėl protesto finansavimo ir LRT darbuotojų dalyvavimo. Tai klasikinis bandymas įbauginti ir nukreipti dėmesį nuo įstatymo esmės.</p>
             </article>
 
             <article class="news-card">
-                <span class="news-date">2025-12-29</span>
-                <h3>POLITINIS KERŠTAS?</h3>
-                <p>Seimo narė B. Vėsaitė ir kiti valdantieji kreipėsi į institucijas, reikalaudami ištirti „Šalin rankas“ protesto kaštus. Tai vertiname kaip bandymą įbauginti ir nutildyti laisvą žodį.</p>
+                <span class="date-tag">2026 m. sausio 7 d.</span>
+                <h3>„UŽDARA“ DARBO GRUPĖ</h3>
+                <p>Seimo valdyba atsisakė įtraukti naujus narius į LRT valdysenos darbo grupę. Opozicija ir ekspertai perspėja: tai rodo, kad „tobulinimas“ tėra dūmų uždanga, siekiant grįžti su tais pačiais pasiūlymais pavasario sesijoje.</p>
             </article>
 
-            <article class="news-card" style="border-left: 5px solid var(--primary-color);">
-                <span class="news-date">SVARBU</span>
-                <h3>KODĖL MES BUDIME?</h3>
-                <p>Pataisos nėra atmestos – jos tik „įstrigo“ komitete. Bet kurią akimirką jos gali grįžti į darbotvarkę. Mes stebime kiekvieną Seimo žingsnį.</p>
+            <article class="news-card">
+                <span class="date-tag">Bendra situacija</span>
+                <h3>ĮSTATYMAS TIK „ĮŠALDYTAS“</h3>
+                <p>Nors skubos tvarka gruodį nepavyko, įstatymo projektas nėra atmestas. Jis guli komitete, užverstas tūkstančiu pataisų. Bet kurią akimirką, radus politinį kompromisą, jis gali būti „atšildytas“.</p>
             </article>
         </div>
     </section>
 
-    <section class="timeline-box">
-        <div class="container" style="padding: 0;">
-            <h2 style="text-align: center; color: var(--white);">KOVA UŽ LAISVĄ ŽODĮ</h2>
-            
-            <div class="timeline-item">
-                <strong style="color: var(--primary-color);">2025 m. gruodžio 18 d.</strong>
-                <p>PERGALĖ (DALINĖ). Po trijų dienų protestų ir laužų prie Seimo, valdantieji buvo priversti atsitraukti. Prezidentūra ir visuomenė tarė griežtą „NE“.</p>
-            </div>
+    <section class="timeline-section">
+        <h2 style="text-align: center; margin-bottom: 50px;">KAIP MES GYNĖME LAISVĘ</h2>
+        
+        <div class="timeline-item">
+            <span class="timeline-date">2025 m. GRUODŽIO 18 d.</span>
+            <h3>LAIMĖTAS MŪŠIS</h3>
+            <p>Po trijų dienų nepertraukiamų protestų ir laužų prie Seimo, valdantieji buvo priversti stabdyti priėmimą. Seimo salėje opozicija registravo masines pataisas, blokuodama procesą.</p>
+        </div>
 
-            <div class="timeline-item">
-                <strong style="color: var(--primary-color);">2025 m. gruodžio 16 d.</strong>
-                <p>MOBILIZACIJA. Tūkstantinė minia susirinko Nepriklausomybės aikštėje. LRT radijas transliavo gyvai iš aikštės.</p>
-            </div>
+        <div class="timeline-item">
+            <span class="timeline-date">2025 m. GRUODŽIO 16 d.</span>
+            <h3>MASINĖ MOBILIZACIJA</h3>
+            <p>Nepriklausomybės aikštėje susirinko tūkstantinė minia. LRT radijas pradėjo tiesiogines transliacijas iš aikštės. Uždegti laisvės laužai.</p>
+        </div>
 
-            <div class="timeline-item">
-                <strong style="color: var(--primary-color);">2025 m. gruodžio 9 d.</strong>
-                <p>PIRMASIS SIGNALAS. Pirmasis mitingas, parodęs, kad visuomenė neleis politizuoti nacionalinio transliuotojo.</p>
-            </div>
+        <div class="timeline-item">
+            <span class="timeline-date">2025 m. GRUODŽIO 9 d.</span>
+            <h3>PIRMASIS SIGNALAS</h3>
+            <p>„Šalin rankas nuo laisvo žodžio“ iniciatyva sukvietė pirmąjį mitingą (~10 tūkst. žmonių), parodydama, kad visuomenė neleis politizuoti LRT.</p>
         </div>
     </section>
 
     <section class="container" style="text-align: center;">
-        <h2>BŪK PASIRUOŠĘS</h2>
-        <p>Šiuo metu į gatves nekviečiame, bet tai gali pasikeisti per vieną naktį.</p>
-        
         <div class="subscribe-box">
-            <h3>GAUK SKUBIUS PRANEŠIMUS SMS ŽINUTE</h3>
-            <p style="font-size: 0.9rem; margin-bottom: 20px;">Tik ypatingos skubos atveju (pvz., jei įstatymas grįžta į salę).</p>
-            <form>
-                <input type="email" placeholder="Tavo el. paštas arba tel. nr.">
-                <button type="button" class="btn" style="border: 2px solid white; margin-top: 0;">Prenumeruoti</button>
-            </form>
-        </div>
-        
-        <div style="margin-top: 40px;">
-             <a href="https://www.facebook.com/events/1183241723986819/" target="_blank" style="text-decoration: underline; font-weight: bold;">Sekite diskusijas Facebook grupėje &rarr;</a>
+            <h2>LIKITE BUDRŪS</h2>
+            <p style="margin-bottom: 30px;">
+                Mes stebime kiekvieną Seimo žingsnį. Jei įstatymas grįš į darbotvarkę, mums reikės jūsų per 24 valandas.
+            </p>
+            
+            <a href="https://www.facebook.com/events/1183241723986819/" target="_blank" class="btn">
+                SEKTI NAUJIENAS FACEBOOK
+            </a>
+            <br><br>
+            <p style="font-size: 0.9rem; color: #666;">Prisijunkite prie diskusijų ir gaukite skubius pranešimus.</p>
         </div>
     </section>
 
-    <footer style="background: black; color: white; padding: 20px; text-align: center; border-top: 5px solid var(--primary-color);">
-        <p>&copy; 2026 Iniciatyva už Žodžio Laisvę.</p>
-        <p>Mes stebime.</p>
+    <footer style="background: black; color: white; padding: 30px; text-align: center; border-top: 5px solid var(--primary-color);">
+        <p>&copy; 2026 Iniciatyva „Šalin Rankas“.</p>
+        <p>LRT priklauso visuomenei, ne politikams.</p>
     </footer>
 
 </body>
