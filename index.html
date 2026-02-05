@@ -11,7 +11,7 @@
             --black: #050505;
             --white: #ffffff;
             --grey: #f0f0f0;
-            --alert: #ff9800; /* Oranžinė - įspėjimui */
+            --alert: #ff9800;
         }
 
         body {
@@ -43,12 +43,7 @@
             cursor: pointer;
             font-family: Helvetica, Arial, sans-serif;
             margin-top: 20px;
-        }
-
-        .btn.outline {
-            background: transparent;
-            color: var(--black);
-            border-color: var(--black);
+            text-align: center;
         }
 
         .btn:hover { 
@@ -166,7 +161,7 @@
                 LRT įstatymas yra prioritetinių darbų sąraše.
             </p>
             <div style="margin-top: 40px;">
-                <a href="#veiksmas" class="btn">RUOŠTIS PROTESTUI</a>
+                <a href="#veiksmas" class="btn">KAIP PASIRUOŠTI?</a>
             </div>
         </div>
     </header>
@@ -178,19 +173,19 @@
             <article class="news-card critical">
                 <span class="date-tag" style="color:red;">2026-02-04 • Svarbu</span>
                 <h3>DARBO GRUPĖS FIASKO</h3>
-                <p>Nutekinta informacija rodo, kad „kompromisinė“ darbo grupė nepakeitė esminių įstatymo nuostatų. Politinė taryba ir toliau siekia skirti LRT valdybos narius tiesiogiai, apeinant visuomenines organizacijas. Tai – tiesioginė kontrolė.</p>
+                <p>Nutekinta informacija rodo, kad „kompromisinė“ darbo grupė nepakeitė esminių įstatymo nuostatų. Politinė taryba ir toliau siekia skirti LRT valdybos narius tiesiogiai.</p>
             </article>
 
             <article class="news-card">
                 <span class="date-tag">2026-02-01</span>
                 <h3>SESIJOS DARBOTVARKĖ</h3>
-                <p>Seimo valdyba tvirtina pavasario sesijos darbų programą. LRT įstatymo pataisos įrašytos kaip „tęstinis prioritetas“. Valdantieji tikisi, kad visuomenės budrumas po žiemos švenčių yra nuslopęs.</p>
+                <p>Seimo valdyba tvirtina pavasario sesijos darbų programą. LRT įstatymo pataisos įrašytos kaip „tęstinis prioritetas“.</p>
             </article>
 
             <article class="news-card">
                 <span class="date-tag">Bendra situacija</span>
                 <h3>OPOZICIJOS ĮSPĖJIMAS</h3>
-                <p>Demokratinės frakcijos įspėja, kad valdantieji gali bandyti priimti įstatymą pirmosiomis sesijos savaitėmis (Kovo 10–20 d.), kol visuomenė nesuspėjo sureaguoti.</p>
+                <p>Demokratinės frakcijos įspėja, kad valdantieji gali bandyti priimti įstatymą pirmosiomis sesijos savaitėmis (Kovo 10–20 d.).</p>
             </article>
         </div>
     </section>
@@ -204,32 +199,29 @@
             </p>
 
             <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; text-align: left; margin-bottom: 50px;">
-                <div style="flex: 1; min-width: 250px; background: #1a1a1a; padding: 20px;">
+                <div style="flex: 1; min-width: 250px; background: #1a1a1a; padding: 20px; border: 1px solid #333;">
                     <span class="stat-number">1.</span>
                     <h3>STEBĖK</h3>
-                    <p>Prenumeruok naujienas. Mes atsiųsime SMS tik tada, kai įstatymas bus įtrauktas į darbotvarkę.</p>
+                    <p>Sek naujienas mūsų socialiniuose tinkluose. Tai greičiausias būdas sužinoti apie pavojų.</p>
                 </div>
-                <div style="flex: 1; min-width: 250px; background: #1a1a1a; padding: 20px;">
+                <div style="flex: 1; min-width: 250px; background: #1a1a1a; padding: 20px; border: 1px solid #333;">
                     <span class="stat-number">2.</span>
                     <h3>DALINKIS</h3>
                     <p>Informuok draugus, kad kova dar nebaigta. Tyla yra tai, ko jie tikisi.</p>
                 </div>
             </div>
 
-            <form style="background: white; padding: 30px; max-width: 500px; margin: auto; color: black;">
-                <h3 style="margin-top: 0;">GAUTI SKUBŲ ĮSPĖJIMĄ</h3>
-                <input type="email" placeholder="El. pašto adresas" style="width: 100%; padding: 15px; margin-bottom: 10px; box-sizing: border-box; border: 2px solid #000;">
-                <button type="button" class="btn" style="width: 100%; margin-top: 5px; background: var(--black); border-color: var(--black);">UŽSIREGISTRUOTI</button>
-                <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">Jokių reklamų. Tik pavojaus signalas.</p>
-            </form>
+            <div style="background: white; padding: 40px; max-width: 600px; margin: auto; color: black; border-top: 5px solid var(--primary-color);">
+                <h3 style="margin-top: 0;">SEKITE NAUJIENAS FACEBOOK</h3>
+                <p>Mes nerenkame jūsų asmeninių duomenų. Visa operatyvinė informacija apie protestus bus skelbiama mūsų bendruomenėje.</p>
+                
+                <a href="https://www.facebook.com/events/1183241723986819/" target="_blank" class="btn" style="width: 100%; margin-top: 15px; background: var(--black); border-color: var(--black); box-sizing: border-box;">PRISIJUNGTI PRIE GRUPĖS</a>
+            </div>
         </div>
     </section>
 
     <footer style="background: #e0e0e0; color: var(--black); padding: 30px; text-align: center;">
         <p>&copy; 2026 Iniciatyva „Šalin Rankas“.</p>
-        <div style="margin-top: 10px;">
-            <a href="https://www.facebook.com/events/1183241723986819/" target="_blank" style="text-decoration: underline; font-weight: bold;">Facebook Grupė</a>
-        </div>
     </footer>
 
 </body>
