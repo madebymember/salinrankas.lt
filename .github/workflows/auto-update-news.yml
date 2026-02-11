@@ -1,0 +1,92 @@
+name: Auto-update news (Šalin rankas)
+
+on:
+  schedule:
+    - cron: "0 */6 * * *" # kas 6 val.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 lxml python-dateutil
+
+      - name: Run updater
+        run: |
+          python tools/update_news.py
+
+      - name: Detect changes
+        id: diff
+        run: |
+          if git diff --quiet --exit-code index.html; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit & push changes
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          BRANCH="auto/news-$(date +'%Y%m%d%H%M')"
+          echo "BRANCH=$BRANCH" >> $GITHUB_ENV
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add index.html
+          git commit -m "chore(news): auto-update naujienų kortelės (Šalin rankas)"
+          git push -u origin "$BRANCH"
+
+      - name: Open PR with github-script
+        if: steps.diff.outputs.changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const branch = process.env.BRANCH;
+            const title  = "Auto: atnaujintos naujienos (Šalin rankas)";
+            const body   = [
+              "Šis PR automatiškai atnaujina naujienų korteles pagal stebimus šaltinius.",
+              "",
+              "Stebimi šaltiniai:",
+              "- LRT, Delfi, Laikas.lt (LRT įstatymo pokyčiai / ministrės komentarai)",
+              "- TV3, KaunoDiena (akcijos finansavimas)",
+              "- e-Seimas / Infolex (pavasario sesijos darbotvarkė/kontekstas)",
+              "",
+              `Sugeneruota: ${new Date().toISOString()}`
+            ].join("\n");
+
+            try {
+              // jei egzistuoja toks pat PR iš to paties branch – skip
+              const { data: openPRs } = await github.rest.pulls.list({
+                owner: context.repo.owner,
+                repo:  context.repo.repo,
+                state: 'open',
+                head:  `${context.repo.owner}:${branch}`
+              });
+              if (openPRs.length > 0) {
+                core.info(`PR jau atidarytas: #${openPRs[0].number}`);
+              } else {
+                const { data: pr } = await github.rest.pulls.create({
+                  owner: context.repo.owner,
+                  repo:  context.repo.repo,
+                  title, head: branch, base: 'main', body
+                });
+                core.info(`Sukurtas PR: #${pr.number}`);
+              }
+            } catch (e) {
+              core.warning(`Nepavyko sukurti PR: ${e.message}`);
+            }
